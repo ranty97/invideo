@@ -1,10 +1,8 @@
-import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-    const [count, setCount] = useState(0)
 
     const handleLoginDiscord = () => {
         window.location.href = "http://localhost:3000/auth/discord";
@@ -24,22 +22,15 @@ function App() {
                 </a>
             </div>
             <h1>Vite + React</h1>
-            <div className="card">
-                <button onClick={() => setCount((count) => count + 1)}>
-                    count is {count}
-                </button>
-                <p>
-                    Edit <code>src/App.tsx</code> and save to test HMR
-                </p>
-            </div>
             <div>
                 <button onClick={handleLoginGoogle}>
-                    Login with discord
+                    Login with Google
                 </button>
             </div>
+
             <div>
                 <button onClick={handleLoginDiscord}>
-                    Login with discord
+                    Login with Discord
                 </button>
             </div>
             <p className="read-the-docs">

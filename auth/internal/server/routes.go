@@ -1,7 +1,6 @@
 package server
 
 import (
-	"encoding/json"
 	"fmt"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/gorilla/mux"
@@ -15,24 +14,11 @@ func (s *Server) RegisterRoutes() http.Handler {
 	r := mux.NewRouter()
 	r.Use(middleware.Logger)
 
-	r.HandleFunc("/", s.HelloWorldHandler).Methods("GET")
 	r.HandleFunc("/auth/{provider}/callback", s.getAuthCallback).Methods("GET")
 	r.HandleFunc("/logout/{provider}", s.logout).Methods("GET")
 	r.HandleFunc("/auth/{provider}", s.getUser).Methods("GET")
 
 	return r
-}
-
-func (s *Server) HelloWorldHandler(w http.ResponseWriter, r *http.Request) {
-	resp := make(map[string]string)
-	resp["message"] = "Hello World"
-
-	jsonResp, err := json.Marshal(resp)
-	if err != nil {
-		log.Fatalf("error handling JSON marshal. Err: %v", err)
-	}
-
-	_, _ = w.Write(jsonResp)
 }
 
 func (s *Server) getAuthCallback(w http.ResponseWriter, r *http.Request) {
